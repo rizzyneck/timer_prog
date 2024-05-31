@@ -14,6 +14,7 @@ qr.add_data(text)
 qr.make(fit=True)
 img = qr.make_image(fill='black', back_color='white')
 file_path = os.path.join(os.environ['USERPROFILE'],"qrcode.png")
+os.remove(file_path)
 if not os.path.isfile(file_path):
     img.save(file_path)
 root = tk.Tk()
