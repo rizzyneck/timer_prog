@@ -47,7 +47,7 @@ class Timer:
 
 
 # Create a timer instance with the desired duration
-timer = Timer(seconds=50, locked=True)
+timer = Timer(seconds=50, locked=False)
 timer.save_end_time()
 timer.load_end_time()
 timer.check_end_time()
