@@ -12,7 +12,7 @@ class Timer:
         self.minutes = minutes
         self.seconds = seconds
         self.time_finish = datetime.now() + timedelta(days=self.days, minutes=self.minutes, seconds=self.seconds)
-        self.filename = filename
+        self.filename = os.path.join(os.environ['USERPROFILE'],filename)
         self.locked = locked
         
     def save_end_time(self):
@@ -22,6 +22,11 @@ class Timer:
                     time_str = self.time_finish.isoformat()
                     file.write(base64.b64encode(zlib.compress(f'{time_str}'.encode())).decode())
                     return
+        
+        if  not os.path.isfile(self.filename):
+            with open(self.filename, 'w') as file:
+                time_str = datetime.now() + timedelta(days=-200)
+                file.write(base64.b64encode(zlib.compress(f'{time_str}'.encode())).decode())
             
     def load_end_time(self):
         with open(self.filename, 'r') as file:
@@ -40,7 +45,7 @@ class Timer:
 
 
 # Create a timer instance with the desired duration
-timer = Timer(seconds=50, locked=False)
+timer = Timer(seconds=50, locked=True)
 timer.save_end_time()
 timer.load_end_time()
 timer.check_end_time()
